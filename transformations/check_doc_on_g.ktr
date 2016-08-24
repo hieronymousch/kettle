@@ -70,7 +70,7 @@
   <created_user>-</created_user>
   <created_date>2016&#x2f;01&#x2f;20 14&#x3a;19&#x3a;36.377</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2016&#x2f;02&#x2f;03 10&#x3a;09&#x3a;20.500</modified_date>
+  <modified_date>2016&#x2f;02&#x2f;26 15&#x3a;48&#x3a;06.689</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -109,7 +109,6 @@
   <hop> <from>Sort rows</from><to>Merge Join</to><enabled>Y</enabled> </hop>
   <hop> <from>Sort rows 2</from><to>Merge Join</to><enabled>Y</enabled> </hop>
   <hop> <from>Merge Join</from><to>Add constants</to><enabled>Y</enabled> </hop>
-  <hop> <from>Add constants</from><to>doc exisits on G</to><enabled>Y</enabled> </hop>
   <hop> <from>Sort rows 2</from><to>Select values 2</to><enabled>Y</enabled> </hop>
   <hop> <from>Sort rows</from><to>Select values</to><enabled>Y</enabled> </hop>
   <hop> <from>Select values</from><to>Merge Rows &#x28;diff&#x29;</to><enabled>Y</enabled> </hop>
@@ -117,9 +116,13 @@
   <hop> <from>Select values 2</from><to>Merge Rows &#x28;diff&#x29;</to><enabled>Y</enabled> </hop>
   <hop> <from>Strings cut</from><to>Sort rows 2</to><enabled>Y</enabled> </hop>
   <hop> <from>doc exisits on G</from><to>Concat Fields</to><enabled>Y</enabled> </hop>
-  <hop> <from>Concat Fields</from><to>Text file output &#x28;not existing doc&#x29;</to><enabled>Y</enabled> </hop>
   <hop> <from>doc exisits on G</from><to>Concat Fields 2</to><enabled>Y</enabled> </hop>
   <hop> <from>Concat Fields 2</from><to>Text file output</to><enabled>Y</enabled> </hop>
+  <hop> <from>Add constants</from><to>Add a checksum</to><enabled>Y</enabled> </hop>
+  <hop> <from>Concat Fields</from><to>Text file output &#x28;not existing doc&#x29;</to><enabled>Y</enabled> </hop>
+  <hop> <from>Add a checksum</from><to>doc exisits on G</to><enabled>Y</enabled> </hop>
+  <hop> <from>Text file output &#x28;not existing doc&#x29;</from><to>Insert &#x2f; Update</to><enabled>Y</enabled> </hop>
+  <hop> <from>Text file output</from><to>Insert &#x2f; Update</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Add constants</name>
@@ -284,7 +287,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif>C&#x3a;&#x5c;Users&#x5c;Public&#x5c;xde&#x5c;DBNODE-3.4&#x5c;htdocs&#x5c;TechDoc&#x5c;</nullif>
+        <nullif>&#x5c;&#x5c;idcn.mil.intra&#x5c;cdn-masterdata&#x5c;Global-Change&#x5c;CIDMat&#x5c;Tech Bib Defense&#x5c;index&#x5c;</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
@@ -373,8 +376,8 @@
     </ConcatFields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>734</xloc>
-      <yloc>123</yloc>
+      <xloc>1022</xloc>
+      <yloc>61</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -454,8 +457,8 @@
     </ConcatFields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>676</xloc>
-      <yloc>252</yloc>
+      <xloc>1063</xloc>
+      <yloc>333</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -521,8 +524,8 @@
     </keys_2>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>325</xloc>
-      <yloc>75</yloc>
+      <xloc>350</xloc>
+      <yloc>70</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -551,8 +554,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>46</xloc>
-      <yloc>191</yloc>
+      <xloc>72</xloc>
+      <yloc>204</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -696,8 +699,8 @@
         <storage_type/>
       </meta>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>171</xloc>
-      <yloc>207</yloc>
+      <xloc>186</xloc>
+      <yloc>209</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -764,8 +767,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>298</xloc>
-      <yloc>212</yloc>
+      <xloc>332</xloc>
+      <yloc>207</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -791,8 +794,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>337</xloc>
-      <yloc>341</yloc>
+      <xloc>376</xloc>
+      <yloc>300</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1081,7 +1084,7 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>KeyID</name>
+        <name>techdoc_checksum</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -1119,8 +1122,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>883</xloc>
-      <yloc>346</yloc>
+      <xloc>1245</xloc>
+      <yloc>344</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1363,8 +1366,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>906</xloc>
-      <yloc>113</yloc>
+      <xloc>1260</xloc>
+      <yloc>71</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1418,8 +1421,134 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>569</xloc>
-      <yloc>138</yloc>
+      <xloc>775</xloc>
+      <yloc>149</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Add a checksum</name>
+    <type>CheckSum</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <checksumtype>CRC32</checksumtype>
+      <resultfieldName>techdoc_checksum</resultfieldName>
+      <resultType>hexadecimal</resultType>
+      <compatibilityMode>N</compatibilityMode>
+    <fields>
+      <field>
+        <name>NSN</name>
+      </field>
+      <field>
+        <name>document</name>
+      </field>
+      <field>
+        <name>Title</name>
+      </field>
+      <field>
+        <name>Type</name>
+      </field>
+      <field>
+        <name>Keyword</name>
+      </field>
+      <field>
+        <name>Comments</name>
+      </field>
+      <field>
+        <name>Man_Org</name>
+      </field>
+      <field>
+        <name>filename</name>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>589</xloc>
+      <yloc>130</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Insert &#x2f; Update</name>
+    <type>InsertUpdate</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>msywsledt153935.idcn.mil.intra</connection>
+    <commit>100</commit>
+    <update_bypassed>N</update_bypassed>
+    <lookup>
+      <schema/>
+      <table>a_techdoc</table>
+      <key>
+        <name>NSN</name>
+        <field>NSN</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>NSN</name>
+        <rename>NSN</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>document</name>
+        <rename>document</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>Title</name>
+        <rename>Title</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>Type</name>
+        <rename>Type</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>Keyword</name>
+        <rename>Keyword</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>Comments</name>
+        <rename>Comments</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>Man_Org</name>
+        <rename>Man_Org</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>techdoc_checksum</name>
+        <rename>techdoc_checksum</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>filename</name>
+        <rename>filename</rename>
+        <update>Y</update>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1344</xloc>
+      <yloc>202</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
