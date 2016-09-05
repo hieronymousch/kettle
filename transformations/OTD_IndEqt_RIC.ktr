@@ -69,15 +69,15 @@
   <created_user>-</created_user>
   <created_date>2016&#x2f;03&#x2f;18 11&#x3a;31&#x3a;36.655</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2016&#x2f;05&#x2f;10 14&#x3a;43&#x3a;48.667</modified_date>
+  <modified_date>2016&#x2f;09&#x2f;05 15&#x3a;05&#x3a;17.554</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
   <connection>
-    <name>msywsledt153935.idcn.mil.intra</name>
-    <server>msywsledt153935.idcn.mil.intra</server>
+    <name>localhost</name>
+    <server>localhost</server>
     <type>MYSQL</type>
     <access>Native</access>
     <database>dbnode</database>
@@ -110,7 +110,7 @@
   <hop> <from>Value issued items</from><to>items</to><enabled>Y</enabled> </hop>
   <hop> <from>Sort rows 3</from><to>Value issued items</to><enabled>Y</enabled> </hop>
   <hop> <from>assets in stores</from><to>Sort rows 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>transactions open loan &#x26; stock parachutes</from><to>Sort rows 2 3</to><enabled>Y</enabled> </hop>
+  <hop> <from>transactions open loan &#x26; stock parachutes en DOVO</from><to>Sort rows 2 3</to><enabled>Y</enabled> </hop>
   <hop> <from>Sort rows 2 2</from><to>Sorted Merge</to><enabled>Y</enabled> </hop>
   <hop> <from>Sort rows 4</from><to>Merge Join</to><enabled>Y</enabled> </hop>
   <hop> <from>Sort rows 2</from><to>Group by</to><enabled>Y</enabled> </hop>
@@ -122,6 +122,9 @@
   <hop> <from>Select values</from><to>Sort rows 2 2</to><enabled>Y</enabled> </hop>
   <hop> <from>Group by 2</from><to>Select values 2</to><enabled>Y</enabled> </hop>
   <hop> <from>Select values 2</from><to>Sort rows 2 2 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>Merge Join</from><to>Filter rows</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter rows</from><to>Microsoft Excel Output</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter rows</from><to>Dummy &#x28;do nothing&#x29;</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Calculator</name>
@@ -152,6 +155,54 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>624</xloc>
       <yloc>32</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Dummy &#x28;do nothing&#x29;</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>752</xloc>
+      <yloc>144</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Filter rows</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Microsoft Excel Output</send_true_to>
+<send_false_to>Dummy &#x28;do nothing&#x29;</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>AVG_PRICE</leftvalue>
+ <function>&#x3c;&#x3d;</function>
+ <rightvalue/>
+ <value><name>constant</name><type>BigNumber</type><text>1</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask>&#x23;.&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x3b;-&#x23;.&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;&#x23;</mask></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>608</xloc>
+      <yloc>144</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -246,7 +297,7 @@
     <name>Merge Join</name>
     <type>MergeJoin</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
          <partitioning>
@@ -271,6 +322,73 @@
     </step>
 
   <step>
+    <name>Microsoft Excel Output</name>
+    <type>ExcelOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <header>Y</header>
+    <footer>N</footer>
+    <encoding/>
+    <append>N</append>
+    <add_to_result_filenames>Y</add_to_result_filenames>
+    <file>
+      <name>E&#x3a;&#x5c;xde&#x5c;kettle_rep&#x5c;OTD_IndEqt_NoPrice</name>
+      <extention>xls</extention>
+      <do_not_open_newfile_init>N</do_not_open_newfile_init>
+      <create_parent_folder>N</create_parent_folder>
+      <split>N</split>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <sheetname>Sheet1</sheetname>
+      <autosizecolums>N</autosizecolums>
+      <nullisblank>N</nullisblank>
+      <protect_sheet>N</protect_sheet>
+      <password>Encrypted </password>
+      <splitevery>0</splitevery>
+      <usetempfiles>N</usetempfiles>
+      <tempdirectory/>
+      </file>
+    <template>
+      <enabled>N</enabled>
+      <append>N</append>
+      <filename>template.xls</filename>
+    </template>
+    <fields>
+    </fields>
+    <custom>
+    <header_font_name>arial</header_font_name>
+    <header_font_size>10</header_font_size>
+    <header_font_bold>N</header_font_bold>
+    <header_font_italic>N</header_font_italic>
+    <header_font_underline>no</header_font_underline>
+    <header_font_orientation>horizontal</header_font_orientation>
+    <header_font_color>black</header_font_color>
+    <header_background_color>none</header_background_color>
+    <header_row_height>255</header_row_height>
+    <header_alignment>left</header_alignment>
+    <header_image/>
+    <row_font_name>arial</row_font_name>
+    <row_font_size>10</row_font_size>
+    <row_font_color>black</row_font_color>
+    <row_background_color>none</row_background_color>
+      </custom>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>768</xloc>
+      <yloc>256</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>NSN of interest</name>
     <type>TableInput</type>
     <description/>
@@ -281,8 +399,8 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>msywsledt153935.idcn.mil.intra</connection>
-    <sql>select &#xd;&#xa;n.NSN&#xd;&#xa;, n.DESCRIPTION&#xd;&#xa;, n.ALB&#xd;&#xa;, n.LAST_PRICE&#xd;&#xa;, n.AVG_PRICE&#xd;&#xa;, n.YEAR_PRICE&#xd;&#xa;, n.MACODE&#xd;&#xa;, d.value &#x27;RIC&#x27;&#xd;&#xa;, l.description &#x27;RIC Descr&#x27;&#xd;&#xa;, l2.description &#x27;RIC Top Descr&#x27;&#xd;&#xa;FROM mrqr_nsn n &#xd;&#xa;inner join mrqr_dynamic_characteristics d on n.nsn&#x3d;d.descriptor_value and d.udt_table&#x3d;&#x27;PARTS&#x27; and d.name&#x3d;&#x27;SMP_RIC&#x27;&#xd;&#xa;inner join logfas_ric l on left&#x28;d.value,3&#x29;&#x3d;l.reportableitemcode&#xd;&#xa;inner join logfas_ric l2 on left&#x28;d.value,1&#x29;&#x3d;l2.reportableitemcode&#xd;&#xa;where &#xd;&#xa;left&#x28;d.value,3&#x29; in &#x28;&#x27;BE2&#x27;,&#x27;BE4&#x27;,&#x27;BE5&#x27;,&#x27;BE6&#x27;,&#x27;BE7&#x27;,&#x27;TB1&#x27;&#x29;&#xd;&#xa;or left&#x28;d.value,2&#x29; in &#x28;&#x27;BA&#x27;,&#x27;BD&#x27;,&#x27;NB&#x27;,&#x27;QA&#x27;&#x29;&#xd;&#xa;and left&#x28;n.macode,1&#x29; in &#x28;&#x27;S&#x27;,&#x27;Y&#x27;&#x29;&#xd;&#xa;&#xd;&#xa;union&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;SELECT&#xd;&#xa;n.NSN&#xd;&#xa;, n.DESCRIPTION&#xd;&#xa;, n.ALB&#xd;&#xa;, n.LAST_PRICE&#xd;&#xa;, n.AVG_PRICE&#xd;&#xa;, n.YEAR_PRICE&#xd;&#xa;, n.MACODE&#xd;&#xa;, m.comments &#x27;RIC&#x27;&#xd;&#xa;, &#x27;Clothing&#x27; &#xd;&#xa;, &#x27;Clothing&#x27;&#xd;&#xa;&#xd;&#xa;FROM mrqr_nsn n inner join mrqr_macodes m on n.macode&#x3d;m.macode&#xd;&#xa;left join mrqr_dynamic_characteristics d on n.nsn&#x3d;d.descriptor_value and d.udt_table&#x3d;&#x27;PARTS&#x27; and d.name&#x3d;&#x27;SMP_RIC&#x27;&#xd;&#xa;where &#xd;&#xa;n.UTIL_STATUS in &#x28;1,2,3,4&#x29; &#xd;&#xa;and n.ENTRY_POINT&#x3d;&#x27;CP23&#x27; &#xd;&#xa;and n.REFORM in &#x28;&#x27;A&#x27;,&#x27;B&#x27;&#x29;&#xd;&#xa;and n.macode like &#x22;SEC4D&#x25;&#x22;&#xd;&#xa;and d.value is null&#xd;&#xa;&#xd;&#xa;union&#xd;&#xa;&#xd;&#xa;SELECT&#xd;&#xa;n.NSN&#xd;&#xa;, n.DESCRIPTION&#xd;&#xa;, n.ALB&#xd;&#xa;, n.LAST_PRICE&#xd;&#xa;, n.AVG_PRICE&#xd;&#xa;, n.YEAR_PRICE&#xd;&#xa;, n.MACODE&#xd;&#xa;, &#x27;Parachute&#x27; &#xd;&#xa;, &#x27;Parachute&#x27; &#xd;&#xa;, &#x27;Parachute&#x27;&#xd;&#xa;&#xd;&#xa;FROM mrqr_nsn n inner join mrqr_macodes m on n.macode&#x3d;m.macode&#xd;&#xa;where &#xd;&#xa;n.UTIL_STATUS in &#x28;1,2,3,4&#x29; &#xd;&#xa;and n.REFORM in &#x28;&#x27;A&#x27;,&#x27;B&#x27;&#x29;&#xd;&#xa;and n.macode like &#x22;SEL3P&#x25;&#x22;&#xd;&#xa;</sql>
+    <connection>localhost</connection>
+    <sql>select &#xd;&#xa;n.NSN&#xd;&#xa;, n.DESCRIPTION&#xd;&#xa;, n.ALB&#xd;&#xa;, n.LAST_PRICE&#xd;&#xa;, n.AVG_PRICE&#xd;&#xa;, n.YEAR_PRICE&#xd;&#xa;, n.MACODE&#xd;&#xa;, d.value &#x27;RIC&#x27;&#xd;&#xa;, l.description &#x27;RIC Descr&#x27;&#xd;&#xa;, l2.description &#x27;RIC Top Descr&#x27;&#xd;&#xa;FROM mrqr_nsn n &#xd;&#xa;inner join mrqr_dynamic_characteristics d on n.nsn&#x3d;d.descriptor_value and d.udt_table&#x3d;&#x27;PARTS&#x27; and d.name&#x3d;&#x27;SMP_RIC&#x27;&#xd;&#xa;inner join logfas_ric l on left&#x28;d.value,3&#x29;&#x3d;l.reportableitemcode&#xd;&#xa;inner join logfas_ric l2 on left&#x28;d.value,1&#x29;&#x3d;l2.reportableitemcode&#xd;&#xa;where &#xd;&#xa;left&#x28;d.value,3&#x29; in &#x28;&#x27;BE2&#x27;,&#x27;BE4&#x27;,&#x27;BE5&#x27;,&#x27;BE6&#x27;,&#x27;BE7&#x27;,&#x27;TB1&#x27;&#x29;&#xd;&#xa;or left&#x28;d.value,2&#x29; in &#x28;&#x27;BA&#x27;,&#x27;BD&#x27;,&#x27;NB&#x27;,&#x27;QA&#x27;&#x29;&#xd;&#xa;and left&#x28;n.macode,1&#x29; in &#x28;&#x27;S&#x27;,&#x27;Y&#x27;&#x29;&#xd;&#xa;&#xd;&#xa;union&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;SELECT&#xd;&#xa;n.NSN&#xd;&#xa;, n.DESCRIPTION&#xd;&#xa;, n.ALB&#xd;&#xa;, n.LAST_PRICE&#xd;&#xa;, n.AVG_PRICE&#xd;&#xa;, n.YEAR_PRICE&#xd;&#xa;, n.MACODE&#xd;&#xa;, m.comments &#x27;RIC&#x27;&#xd;&#xa;, &#x27;Clothing&#x27; &#xd;&#xa;, &#x27;Clothing&#x27;&#xd;&#xa;&#xd;&#xa;FROM mrqr_nsn n inner join mrqr_macodes m on n.macode&#x3d;m.macode&#xd;&#xa;left join mrqr_dynamic_characteristics d on n.nsn&#x3d;d.descriptor_value and d.udt_table&#x3d;&#x27;PARTS&#x27; and d.name&#x3d;&#x27;SMP_RIC&#x27;&#xd;&#xa;where &#xd;&#xa;n.UTIL_STATUS in &#x28;1,2,3,4&#x29; &#xd;&#xa;and n.ENTRY_POINT&#x3d;&#x27;CP23&#x27; &#xd;&#xa;and n.REFORM in &#x28;&#x27;A&#x27;,&#x27;B&#x27;&#x29;&#xd;&#xa;and n.macode like &#x22;SEC4D&#x25;&#x22;&#xd;&#xa;and d.value is null&#xd;&#xa;&#xd;&#xa;union&#xd;&#xa;&#xd;&#xa;SELECT&#xd;&#xa;n.NSN&#xd;&#xa;, n.DESCRIPTION&#xd;&#xa;, n.ALB&#xd;&#xa;, n.LAST_PRICE&#xd;&#xa;, n.AVG_PRICE&#xd;&#xa;, n.YEAR_PRICE&#xd;&#xa;, n.MACODE&#xd;&#xa;, &#x27;Parachute&#x27; &#xd;&#xa;, &#x27;Parachute&#x27; &#xd;&#xa;, &#x27;Parachute&#x27;&#xd;&#xa;&#xd;&#xa;FROM mrqr_nsn n inner join mrqr_macodes m on n.macode&#x3d;m.macode&#xd;&#xa;where &#xd;&#xa;n.UTIL_STATUS in &#x28;1,2,3,4&#x29; &#xd;&#xa;and n.REFORM in &#x28;&#x27;A&#x27;,&#x27;B&#x27;&#x29;&#xd;&#xa;and n.macode like &#x22;SEL3P&#x25;&#x22;&#xd;&#xa;&#xd;&#xa;union&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;SELECT&#xd;&#xa;n.NSN&#xd;&#xa;, n.DESCRIPTION&#xd;&#xa;, n.ALB&#xd;&#xa;, n.LAST_PRICE&#xd;&#xa;, n.AVG_PRICE&#xd;&#xa;, n.YEAR_PRICE&#xd;&#xa;, n.MACODE&#xd;&#xa;, &#x27;EOD&#x27; &#xd;&#xa;, &#x27;EOD&#x27; &#xd;&#xa;, &#x27;EOD&#x27;&#xd;&#xa;&#xd;&#xa;FROM mrqr_nsn n inner join mrqr_macodes m on n.macode&#x3d;m.macode&#xd;&#xa;inner join mrqr_stock s on n.nsn&#x3d;s.nsn and n.macode in &#x28;&#x27;SEM6DOVO&#x27;,&#x27;SEM6EOD&#x27;&#x29;&#xd;&#xa;where &#xd;&#xa;n.UTIL_STATUS in &#x28;1,2,3,4&#x29; &#xd;&#xa;and n.REFORM in &#x28;&#x27;A&#x27;,&#x27;B&#x27;&#x29;&#xd;&#xa;&#xd;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -292,6 +410,76 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>64</xloc>
       <yloc>32</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Select values</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>        <select_unspecified>N</select_unspecified>
+      <meta>        <name>Qty</name>
+        <rename>Qty</rename>
+        <type>Integer</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>352</xloc>
+      <yloc>256</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Select values 2</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>        <select_unspecified>N</select_unspecified>
+      <meta>        <name>Qty</name>
+        <rename>Qty</rename>
+        <type>Integer</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>352</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -649,8 +837,8 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>msywsledt153935.idcn.mil.intra</connection>
-    <sql>SELECT&#xd;&#xa;asset&#xd;&#xa;, latest_store STORE&#xd;&#xa;, left&#x28;latest_store,2&#x29; unit&#xd;&#xa;, NSN&#xd;&#xa;FROM  mrqr_assets&#xd;&#xa;where left&#x28;latest_store,2&#x29; in &#x28;&#x27;Z1&#x27;,&#x27;Z2&#x27;,&#x27;Z3&#x27;,&#x27;Z4&#x27;,&#x27;10&#x27;,&#x27;02&#x27;,&#x27;GS&#x27;,&#x27;L1&#x27;,&#x27;L2&#x27;,&#x27;L3&#x27;,&#x27;G2&#x27;,&#x27;G3&#x27;,&#x27;GA&#x27;,&#x27;GR&#x27;&#x29; </sql>
+    <connection>localhost</connection>
+    <sql>SELECT&#xd;&#xa;asset&#xd;&#xa;, latest_store STORE&#xd;&#xa;, left&#x28;latest_store,2&#x29; unit&#xd;&#xa;, NSN&#xd;&#xa;FROM  mrqr_assets&#xd;&#xa;where left&#x28;latest_store,2&#x29; in &#x28;&#x27;Z1&#x27;,&#x27;Z2&#x27;,&#x27;Z3&#x27;,&#x27;Z4&#x27;,&#x27;10&#x27;,&#x27;02&#x27;,&#x27;GS&#x27;,&#x27;L1&#x27;,&#x27;L2&#x27;,&#x27;L3&#x27;,&#x27;G2&#x27;,&#x27;G3&#x27;,&#x27;GA&#x27;,&#x27;GR&#x27;,&#x27;DV&#x27;&#x29; </sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -681,7 +869,7 @@
     <append>N</append>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>H&#x3a;&#x5c;xde&#x5c;kettle_rep&#x5c;OTD_IndEqt</name>
+      <name>E&#x3a;&#x5c;xde&#x5c;kettle_rep&#x5c;OTD_IndEqt</name>
       <extention>xls</extention>
       <do_not_open_newfile_init>N</do_not_open_newfile_init>
       <create_parent_folder>N</create_parent_folder>
@@ -732,7 +920,7 @@
     </step>
 
   <step>
-    <name>transactions open loan &#x26; stock parachutes</name>
+    <name>transactions open loan &#x26; stock parachutes en DOVO</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -742,8 +930,8 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>msywsledt153935.idcn.mil.intra</connection>
-    <sql>SELECT&#xd;&#xa;mll.STORE&#xd;&#xa;, left&#x28;mll.store,2&#x29; unit&#xd;&#xa;, mll.NSN&#xd;&#xa;, cast&#x28;mll.OPEN_QTY as UNSIGNED&#x29; &#x27;QtyStore&#x27;&#xd;&#xa;FROM  mrqr_loan_lines mll&#xd;&#xa;where left&#x28;mll.store,2&#x29; in &#x28;&#x27;Z1&#x27;,&#x27;Z2&#x27;,&#x27;Z3&#x27;,&#x27;Z4&#x27;,&#x27;10&#x27;,&#x27;02&#x27;,&#x27;GS&#x27;,&#x27;L1&#x27;,&#x27;L2&#x27;,&#x27;L3&#x27;,&#x27;G2&#x27;,&#x27;G3&#x27;,&#x27;GA&#x27;,&#x27;GR&#x27;&#x29;&#xd;&#xa;&#xd;&#xa;union &#xd;&#xa;&#xd;&#xa;&#xd;&#xa;select&#xd;&#xa;&#xd;&#xa;msl.STORE &#xd;&#xa;, left&#x28;msl.store,2&#x29; unit&#xd;&#xa;, msl.NSN&#xd;&#xa;, cast&#x28;msl.available as UNSIGNED&#x29; &#x27;QtyStore&#x27;&#xd;&#xa;from mrqr_stock_levels msl&#xd;&#xa;where left&#x28;msl.store,2&#x29; in &#x28;&#x27;FP&#x27;,&#x27;GS&#x27;&#x29; and msl.available&#x3e;0</sql>
+    <connection>localhost</connection>
+    <sql>SELECT&#xd;&#xa;mll.STORE&#xd;&#xa;, left&#x28;mll.store,2&#x29; unit&#xd;&#xa;, mll.NSN&#xd;&#xa;, cast&#x28;mll.OPEN_QTY as UNSIGNED&#x29; &#x27;QtyStore&#x27;&#xd;&#xa;FROM  mrqr_loan_lines mll&#xd;&#xa;where left&#x28;mll.store,2&#x29; in &#x28;&#x27;Z1&#x27;,&#x27;Z2&#x27;,&#x27;Z3&#x27;,&#x27;Z4&#x27;,&#x27;10&#x27;,&#x27;02&#x27;,&#x27;GS&#x27;,&#x27;L1&#x27;,&#x27;L2&#x27;,&#x27;L3&#x27;,&#x27;G2&#x27;,&#x27;G3&#x27;,&#x27;GA&#x27;,&#x27;GR&#x27;,&#x27;DV&#x27;&#x29;&#xd;&#xa;&#xd;&#xa;union &#xd;&#xa;&#xd;&#xa;&#xd;&#xa;select&#xd;&#xa;&#xd;&#xa;msl.STORE &#xd;&#xa;, left&#x28;msl.store,2&#x29; unit&#xd;&#xa;, msl.NSN&#xd;&#xa;, cast&#x28;msl.available as UNSIGNED&#x29; &#x27;QtyStore&#x27;&#xd;&#xa;from mrqr_stock_levels msl&#xd;&#xa;where left&#x28;msl.store,2&#x29; in &#x28;&#x27;FP&#x27;,&#x27;GS&#x27;,&#x27;DV&#x27;&#x29; and msl.available&#x3e;0</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -753,76 +941,6 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>66</xloc>
       <yloc>353</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Select values</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>        <select_unspecified>N</select_unspecified>
-      <meta>        <name>Qty</name>
-        <rename>Qty</rename>
-        <type>Integer</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>352</xloc>
-      <yloc>256</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Select values 2</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>        <select_unspecified>N</select_unspecified>
-      <meta>        <name>Qty</name>
-        <rename>Qty</rename>
-        <type>Integer</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>352</xloc>
-      <yloc>352</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
