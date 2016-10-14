@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
     <name>OTD_IndEqt_RIC</name>
@@ -76,7 +77,7 @@
   <notepads>
   </notepads>
   <connection>
-    <name>localhost</name>
+    <name>msywsledt153935.idcn.mil.intra</name>
     <server>msywsledt153935.idcn.mil.intra</server>
     <type>MYSQL</type>
     <access>Native</access>
@@ -399,8 +400,8 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>localhost</connection>
-    <sql>select &#xd;&#xa;n.NSN&#xd;&#xa;, n.DESCRIPTION&#xd;&#xa;, n.ALB&#xd;&#xa;, n.LAST_PRICE&#xd;&#xa;, n.AVG_PRICE&#xd;&#xa;, n.YEAR_PRICE&#xd;&#xa;, n.MACODE&#xd;&#xa;, d.value &#x27;RIC&#x27;&#xd;&#xa;, l.description &#x27;RIC Descr&#x27;&#xd;&#xa;, l2.description &#x27;RIC Top Descr&#x27;&#xd;&#xa;FROM mrqr_nsn n &#xd;&#xa;inner join mrqr_dynamic_characteristics d on n.nsn&#x3d;d.descriptor_value and d.udt_table&#x3d;&#x27;PARTS&#x27; and d.name&#x3d;&#x27;SMP_RIC&#x27;&#xd;&#xa;inner join logfas_ric l on left&#x28;d.value,3&#x29;&#x3d;l.reportableitemcode&#xd;&#xa;inner join logfas_ric l2 on left&#x28;d.value,1&#x29;&#x3d;l2.reportableitemcode&#xd;&#xa;where &#xd;&#xa;left&#x28;d.value,3&#x29; in &#x28;&#x27;BE2&#x27;,&#x27;BE4&#x27;,&#x27;BE5&#x27;,&#x27;BE6&#x27;,&#x27;BE7&#x27;,&#x27;TB1&#x27;&#x29;&#xd;&#xa;or left&#x28;d.value,2&#x29; in &#x28;&#x27;BA&#x27;,&#x27;BD&#x27;,&#x27;NB&#x27;,&#x27;QA&#x27;&#x29;&#xd;&#xa;and left&#x28;n.macode,1&#x29; in &#x28;&#x27;S&#x27;,&#x27;Y&#x27;&#x29;&#xd;&#xa;&#xd;&#xa;union&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;SELECT&#xd;&#xa;n.NSN&#xd;&#xa;, n.DESCRIPTION&#xd;&#xa;, n.ALB&#xd;&#xa;, n.LAST_PRICE&#xd;&#xa;, n.AVG_PRICE&#xd;&#xa;, n.YEAR_PRICE&#xd;&#xa;, n.MACODE&#xd;&#xa;, m.comments &#x27;RIC&#x27;&#xd;&#xa;, &#x27;Clothing&#x27; &#xd;&#xa;, &#x27;Clothing&#x27;&#xd;&#xa;&#xd;&#xa;FROM mrqr_nsn n inner join mrqr_macodes m on n.macode&#x3d;m.macode&#xd;&#xa;left join mrqr_dynamic_characteristics d on n.nsn&#x3d;d.descriptor_value and d.udt_table&#x3d;&#x27;PARTS&#x27; and d.name&#x3d;&#x27;SMP_RIC&#x27;&#xd;&#xa;where &#xd;&#xa;n.UTIL_STATUS in &#x28;1,2,3,4&#x29; &#xd;&#xa;and n.ENTRY_POINT&#x3d;&#x27;CP23&#x27; &#xd;&#xa;and n.REFORM in &#x28;&#x27;A&#x27;,&#x27;B&#x27;&#x29;&#xd;&#xa;and n.macode like &#x22;SEC4D&#x25;&#x22;&#xd;&#xa;and d.value is null&#xd;&#xa;&#xd;&#xa;union&#xd;&#xa;&#xd;&#xa;SELECT&#xd;&#xa;n.NSN&#xd;&#xa;, n.DESCRIPTION&#xd;&#xa;, n.ALB&#xd;&#xa;, n.LAST_PRICE&#xd;&#xa;, n.AVG_PRICE&#xd;&#xa;, n.YEAR_PRICE&#xd;&#xa;, n.MACODE&#xd;&#xa;, &#x27;Parachute&#x27; &#xd;&#xa;, &#x27;Parachute&#x27; &#xd;&#xa;, &#x27;Parachute&#x27;&#xd;&#xa;&#xd;&#xa;FROM mrqr_nsn n inner join mrqr_macodes m on n.macode&#x3d;m.macode&#xd;&#xa;where &#xd;&#xa;n.UTIL_STATUS in &#x28;1,2,3,4&#x29; &#xd;&#xa;and n.REFORM in &#x28;&#x27;A&#x27;,&#x27;B&#x27;&#x29;&#xd;&#xa;and n.macode like &#x22;SEL3P&#x25;&#x22;&#xd;&#xa;&#xd;&#xa;union&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;SELECT&#xd;&#xa;n.NSN&#xd;&#xa;, n.DESCRIPTION&#xd;&#xa;, n.ALB&#xd;&#xa;, n.LAST_PRICE&#xd;&#xa;, n.AVG_PRICE&#xd;&#xa;, n.YEAR_PRICE&#xd;&#xa;, n.MACODE&#xd;&#xa;, &#x27;EOD&#x27; &#xd;&#xa;, &#x27;EOD&#x27; &#xd;&#xa;, &#x27;EOD&#x27;&#xd;&#xa;&#xd;&#xa;FROM mrqr_nsn n inner join mrqr_macodes m on n.macode&#x3d;m.macode&#xd;&#xa;inner join mrqr_stock s on n.nsn&#x3d;s.nsn and n.macode in &#x28;&#x27;SEM6DOVO&#x27;,&#x27;SEM6EOD&#x27;&#x29;&#xd;&#xa;where &#xd;&#xa;n.UTIL_STATUS in &#x28;1,2,3,4&#x29; &#xd;&#xa;and n.REFORM in &#x28;&#x27;A&#x27;,&#x27;B&#x27;&#x29;&#xd;&#xa;&#xd;&#xa;</sql>
+    <connection>msywsledt153935.idcn.mil.intra</connection>
+    <sql>select &#xd;&#xa;-- gewoon Eqt&#xd;&#xa;n.NSN&#xd;&#xa;, n.DESCRIPTION&#xd;&#xa;, n.ALB&#xd;&#xa;, n.LAST_PRICE&#xd;&#xa;, n.AVG_PRICE&#xd;&#xa;, n.YEAR_PRICE&#xd;&#xa;, n.MACODE&#xd;&#xa;, d.value &#x27;RIC&#x27;&#xd;&#xa;, l.description &#x27;RIC Descr&#x27;&#xd;&#xa;, l2.description &#x27;RIC Top Descr&#x27;&#xd;&#xa;FROM mrqr_nsn n &#xd;&#xa;inner join mrqr_dynamic_characteristics d on n.nsn&#x3d;d.descriptor_value and d.udt_table&#x3d;&#x27;PARTS&#x27; and d.name&#x3d;&#x27;SMP_RIC&#x27;&#xd;&#xa;inner join logfas_ric l on left&#x28;d.value,3&#x29;&#x3d;l.reportableitemcode&#xd;&#xa;inner join logfas_ric l2 on left&#x28;d.value,1&#x29;&#x3d;l2.reportableitemcode&#xd;&#xa;where &#xd;&#xa;left&#x28;d.value,3&#x29; in &#x28;&#x27;BE2&#x27;,&#x27;BE4&#x27;,&#x27;BE5&#x27;,&#x27;BE6&#x27;,&#x27;BE7&#x27;&#x29;&#xd;&#xa;or left&#x28;d.value,2&#x29; in &#x28;&#x27;BA&#x27;,&#x27;BD&#x27;,&#x27;NB&#x27;,&#x27;QA&#x27;&#x29;&#xd;&#xa;or left&#x28;d.value,4&#x29; in &#x28;&#x27;TB12&#x27;,&#x27;TB14&#x27;,&#x27;TB16&#x27;&#x29;&#xd;&#xa;and left&#x28;n.macode,1&#x29; in &#x28;&#x27;S&#x27;&#x29;&#xd;&#xa;&#xd;&#xa;union&#xd;&#xa;&#xd;&#xa;select &#xd;&#xa;-- radio Eqt&#xd;&#xa;n.NSN&#xd;&#xa;, n.DESCRIPTION&#xd;&#xa;, n.ALB&#xd;&#xa;, n.LAST_PRICE&#xd;&#xa;, n.AVG_PRICE&#xd;&#xa;, n.YEAR_PRICE&#xd;&#xa;, n.MACODE&#xd;&#xa;, d.value &#x27;RIC&#x27;&#xd;&#xa;, l.description &#x27;RIC Descr&#x27;&#xd;&#xa;, l2.description &#x27;RIC Top Descr&#x27;&#xd;&#xa;FROM mrqr_nsn n &#xd;&#xa;inner join mrqr_macodes mm on n.macode&#x3d;mm.macode&#xd;&#xa;inner join mrqr_dynamic_characteristics d on n.nsn&#x3d;d.descriptor_value and d.udt_table&#x3d;&#x27;PARTS&#x27; and d.name&#x3d;&#x27;SMP_RIC&#x27;&#xd;&#xa;inner join logfas_ric l on left&#x28;d.value,3&#x29;&#x3d;l.reportableitemcode&#xd;&#xa;inner join logfas_ric l2 on left&#x28;d.value,1&#x29;&#x3d;l2.reportableitemcode&#xd;&#xa;where &#xd;&#xa;left&#x28;d.value,3&#x29; in &#x28;&#x27;TB1&#x27;&#x29;&#xd;&#xa;and not&#x28;left&#x28;d.value,4&#x29; in &#x28;&#x27;TB15&#x27;,&#x27;TB17&#x27;,&#x27;TB19&#x27;&#x29;&#x29;&#xd;&#xa;and mm.man_org&#x3d;&#x27;YOP&#x27;&#xd;&#xa;and not&#x28;mm.macode in &#x28;&#x27;CNRTIYKR&#x27;&#x29;&#x29;&#xd;&#xa;&#xd;&#xa;union&#xd;&#xa;&#xd;&#xa;SELECT&#xd;&#xa;n.NSN&#xd;&#xa;, n.DESCRIPTION&#xd;&#xa;, n.ALB&#xd;&#xa;, n.LAST_PRICE&#xd;&#xa;, n.AVG_PRICE&#xd;&#xa;, n.YEAR_PRICE&#xd;&#xa;, n.MACODE&#xd;&#xa;, m.comments &#x27;RIC&#x27;&#xd;&#xa;, &#x27;Clothing&#x27; &#xd;&#xa;, &#x27;Clothing&#x27;&#xd;&#xa;&#xd;&#xa;FROM mrqr_nsn n inner join mrqr_macodes m on n.macode&#x3d;m.macode&#xd;&#xa;left join mrqr_dynamic_characteristics d on n.nsn&#x3d;d.descriptor_value and d.udt_table&#x3d;&#x27;PARTS&#x27; and d.name&#x3d;&#x27;SMP_RIC&#x27;&#xd;&#xa;where &#xd;&#xa;n.UTIL_STATUS in &#x28;1,2,3,4&#x29; &#xd;&#xa;and n.ENTRY_POINT&#x3d;&#x27;CP23&#x27; &#xd;&#xa;and n.REFORM in &#x28;&#x27;A&#x27;,&#x27;B&#x27;&#x29;&#xd;&#xa;and n.macode like &#x22;SEC4D&#x25;&#x22;&#xd;&#xa;and d.value is null&#xd;&#xa;&#xd;&#xa;union&#xd;&#xa;&#xd;&#xa;SELECT&#xd;&#xa;n.NSN&#xd;&#xa;, n.DESCRIPTION&#xd;&#xa;, n.ALB&#xd;&#xa;, n.LAST_PRICE&#xd;&#xa;, n.AVG_PRICE&#xd;&#xa;, n.YEAR_PRICE&#xd;&#xa;, n.MACODE&#xd;&#xa;, &#x27;Parachute&#x27; &#xd;&#xa;, &#x27;Parachute&#x27; &#xd;&#xa;, &#x27;Parachute&#x27;&#xd;&#xa;&#xd;&#xa;FROM mrqr_nsn n inner join mrqr_macodes m on n.macode&#x3d;m.macode&#xd;&#xa;where &#xd;&#xa;n.UTIL_STATUS in &#x28;1,2,3,4&#x29; &#xd;&#xa;and n.REFORM in &#x28;&#x27;A&#x27;,&#x27;B&#x27;&#x29;&#xd;&#xa;and n.macode like &#x22;SEL3P&#x25;&#x22;&#xd;&#xa;&#xd;&#xa;union&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;SELECT&#xd;&#xa;n.NSN&#xd;&#xa;, n.DESCRIPTION&#xd;&#xa;, n.ALB&#xd;&#xa;, n.LAST_PRICE&#xd;&#xa;, n.AVG_PRICE&#xd;&#xa;, n.YEAR_PRICE&#xd;&#xa;, n.MACODE&#xd;&#xa;, &#x27;EOD&#x27; &#xd;&#xa;, &#x27;EOD&#x27; &#xd;&#xa;, &#x27;EOD&#x27;&#xd;&#xa;&#xd;&#xa;FROM mrqr_nsn n inner join mrqr_macodes m on n.macode&#x3d;m.macode&#xd;&#xa;inner join mrqr_stock s on n.nsn&#x3d;s.nsn and n.macode in &#x28;&#x27;SEM6DOVO&#x27;,&#x27;SEM6EOD&#x27;&#x29;&#xd;&#xa;where &#xd;&#xa;n.UTIL_STATUS in &#x28;1,2,3,4&#x29; &#xd;&#xa;and n.REFORM in &#x28;&#x27;A&#x27;,&#x27;B&#x27;&#x29;&#xd;&#xa;&#xd;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -627,7 +628,7 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>176</xloc>
-      <yloc>352</yloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -837,8 +838,8 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>localhost</connection>
-    <sql>SELECT&#xd;&#xa;asset&#xd;&#xa;, latest_store STORE&#xd;&#xa;, left&#x28;latest_store,2&#x29; unit&#xd;&#xa;, NSN&#xd;&#xa;FROM  mrqr_assets&#xd;&#xa;where left&#x28;latest_store,2&#x29; in &#x28;&#x27;Z1&#x27;,&#x27;Z2&#x27;,&#x27;Z3&#x27;,&#x27;Z4&#x27;,&#x27;10&#x27;,&#x27;02&#x27;,&#x27;GS&#x27;,&#x27;L1&#x27;,&#x27;L2&#x27;,&#x27;L3&#x27;,&#x27;G2&#x27;,&#x27;G3&#x27;,&#x27;GA&#x27;,&#x27;GR&#x27;,&#x27;DV&#x27;&#x29; </sql>
+    <connection>msywsledt153935.idcn.mil.intra</connection>
+    <sql>SELECT&#xd;&#xa;asset&#xd;&#xa;, latest_store STORE&#xd;&#xa;, left&#x28;latest_store,2&#x29; unit&#xd;&#xa;, NSN&#xd;&#xa;FROM  mrqr_assets&#xd;&#xa;where left&#x28;latest_store,2&#x29; in &#x28;&#x27;Z1&#x27;,&#x27;Z2&#x27;,&#x27;Z3&#x27;,&#x27;Z4&#x27;,&#x27;10&#x27;,&#x27;02&#x27;,&#x27;GS&#x27;,&#x27;L1&#x27;,&#x27;L2&#x27;,&#x27;L3&#x27;,&#x27;G2&#x27;,&#x27;G3&#x27;,&#x27;GA&#x27;,&#x27;GR&#x27;,&#x27;DV&#x27;&#x29;&#xd;&#xa;and higher_asset is null </sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -930,7 +931,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>localhost</connection>
+    <connection>msywsledt153935.idcn.mil.intra</connection>
     <sql>SELECT&#xd;&#xa;mll.STORE&#xd;&#xa;, left&#x28;mll.store,2&#x29; unit&#xd;&#xa;, mll.NSN&#xd;&#xa;, cast&#x28;mll.OPEN_QTY as UNSIGNED&#x29; &#x27;QtyStore&#x27;&#xd;&#xa;FROM  mrqr_loan_lines mll&#xd;&#xa;where left&#x28;mll.store,2&#x29; in &#x28;&#x27;Z1&#x27;,&#x27;Z2&#x27;,&#x27;Z3&#x27;,&#x27;Z4&#x27;,&#x27;10&#x27;,&#x27;02&#x27;,&#x27;GS&#x27;,&#x27;L1&#x27;,&#x27;L2&#x27;,&#x27;L3&#x27;,&#x27;G2&#x27;,&#x27;G3&#x27;,&#x27;GA&#x27;,&#x27;GR&#x27;,&#x27;DV&#x27;&#x29;&#xd;&#xa;&#xd;&#xa;union &#xd;&#xa;&#xd;&#xa;&#xd;&#xa;select&#xd;&#xa;&#xd;&#xa;msl.STORE &#xd;&#xa;, left&#x28;msl.store,2&#x29; unit&#xd;&#xa;, msl.NSN&#xd;&#xa;, cast&#x28;msl.available as UNSIGNED&#x29; &#x27;QtyStore&#x27;&#xd;&#xa;from mrqr_stock_levels msl&#xd;&#xa;where left&#x28;msl.store,2&#x29; in &#x28;&#x27;FP&#x27;,&#x27;GS&#x27;,&#x27;DV&#x27;&#x29; and msl.available&#x3e;0</sql>
     <limit>0</limit>
     <lookup/>
